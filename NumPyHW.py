@@ -36,9 +36,6 @@ iris_2d = np.genfromtxt(url, delimiter = ',', dtype = 'float', usecols = [0, 1, 
 filtered = iris_2d[(iris_2d[:, 2] > 1.5) & (iris_2d[:, 0] < 5.0)]
 print("Filtered Rows:\n", filtered)
 
-
-
-
 indices = np.where((A >= 5) & (A <= 10))
 proper_nums = A[indices]
 print("Numbers within range (5 to 10) using np.where():", proper_nums)
