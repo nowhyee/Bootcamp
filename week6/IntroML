@@ -1,0 +1,59 @@
+import pandas as pd
+import StandardScalar # z = ( x - mean ) / sd
+import joblib
+
+preprocessing_steps = {
+    "columns_dropped": ['id', 'timestamp', 'country'],
+    "impute_median": ['hours_per_week', 'telecommute_days_per_week'],
+    "binary_columns": ['is_manager', 'certifications'],
+    "categorical_columns": ['job_title', 'department', 'education'],
+    "numerical_columns": ['job_years', 'hours_per_week', 'telecommute_days_per_week']
+}
+
+
+def preprocess_test_data(test_data, preprocessing_steps, scaler):
+
+    test_data = test_data.drop(columns=preprocessing_steps["columns_dropped"], errors='ignore')
+
+
+    for col in preprocessing_steps["impute_median"]:
+        if col in test_data.columns:
+            test_data[col] = test_data[col].fillna(test_data[col].median())
+
+
+    for col in preprocessing_steps["binary_columns"]:
+        if col in test_data.columns:
+            test_data[col] = test_data[col].replace({'Yes': 1, 'No': 0})
+
+
+    test_data = pd.get_dummies(test_data, columns=preprocessing_steps["categorical_columns"], drop_first=True)
+
+
+    if scaler:
+        test_data[preprocessing_steps["numerical_columns"]] = scaler.transform(
+            test_data[preprocessing_steps["numerical_columns"]]
+        )
+
+    return test_data
+
+
+
+test_data = pd.read_csv('employee.csv')
+
+
+scaler = joblib.load('scaler.pkl')  # Replace with your scaler's path
+
+
+processed_test_data = preprocess_test_data(test_data, preprocessing_steps, scaler)
+
+
+reg = joblib.load('model.pkl')  # Replace with your model's path
+
+# Generate predictions
+predictions = reg.predict(processed_test_data)
+
+
+output = pd.DataFrame({'Predictions': predictions})
+output.to_csv('predictions.csv', index=False)
+
+print("Preprocessing complete and predictions saved to 'predictions.csv'.")
