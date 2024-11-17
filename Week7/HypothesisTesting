@@ -1,0 +1,19 @@
+1. How do you assess the statistical significance of an insight?
+   The statistical significance of an insight can be assessed through hypothesis testing.
+   Using p-values to compare results to the null hypothesis helps determine whether the results are due to change. 
+2. What is the Central Limit Theorem? Explain it. Why is it important?
+   The Central Limit Theorem(CLT) is used when the sample size is large enough(more than 30). 
+   Sample means will approximate normal distribution, regardless of the original data's distribution. 
+   It is important because it ensures reliable inferential statistics. 
+3. What is the statistical power?
+   Statistical power is the ability of a test to detect a true effect correctly. 
+   Having a high statistical power means having a greater ability to identify significant results. 
+4. How do you control for biases?
+   Randomization, blinding, and appropriate experimental designs to reduce skewed results can control biases. 
+5. What are confounding variables?
+   Confounding variables are factors that are linked to the independent and dependent variables, distorting the relationship between them. 
+6. What is A/B testing?
+    A/B testing compares two variants to see which performs better. 
+7. What are confidence intervals?
+   A confidence interval is a range that estimates the true value of a population parameter with a specified level of confidence. 
+   
