@@ -4,7 +4,7 @@ import pandas as pd
 
 # Load food nutrients dataset
 data = pd.read_csv("glass.csv")
-X = data.drop("Name", axis=1)
+X = data.drop("Type", axis=1)
 
 # Try different k values
 k_values = [2, 3, 4, 5, 6]
